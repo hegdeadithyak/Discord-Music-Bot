@@ -15,20 +15,24 @@ This Discord bot is a simple example designed for playing music in voice channel
 
    ```bash
    pip install discord.py youtube_dl
+
+   <br>
 Download and install FFmpeg if not already installed: https://ffmpeg.org/download.html
-
+<br>
 Clone the repository or download the script.
-
+<br>
 Replace the placeholder token in the await bot.start() call in the script (bot.py) with your own Discord bot token.
 
 Usage
 Run the script:
 
-bash
-Copy code
+```bash
 python bot.py
-Invite the bot to your Discord server.
+```
 
+Invite the bot to your Discord server.
+<br>
+<p>
 The bot has the following commands:
 
 !join <channel>: Joins a voice channel.
@@ -38,7 +42,8 @@ The bot has the following commands:
 !volume <volume>: Changes the player's volume (0-100%).
 !stop: Stops and disconnects the bot from voice.
 Execute commands in a text channel where you want the bot to operate.
-
+</p>
+<br>
 Important Note
 This example uses the message_content privileged intent. Ensure that your bot has this intent enabled in the Discord Developer Portal under the "Bot" section.
 
