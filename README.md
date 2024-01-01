@@ -16,7 +16,7 @@ This Discord bot is a simple example designed for playing music in voice channel
    ```bash
    pip install discord.py youtube_dl
 
-   <br>
+   ```
 Download and install FFmpeg if not already installed: https://ffmpeg.org/download.html
 <br>
 Clone the repository or download the script.
