@@ -53,7 +53,7 @@ Execute commands in a text channel where you want the bot to operate.
 Important Note
 This example uses the message_content privileged intent. Ensure that your bot has this intent enabled in the Discord Developer Portal under the "Bot" section.
 
-
+<br>
 To-do:
 - [ ] Adding Chat GPT API for selecting songs
 - [ ] Issue to be solved in the last part
