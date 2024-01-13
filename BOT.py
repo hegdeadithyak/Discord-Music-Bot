@@ -11,16 +11,16 @@ youtube_dl.utils.bug_reports_message = lambda: ""
 
 ytdl_format_options = {
     "format": "bestaudio/best",
-    "restrictfilenames": True,
-    "noplaylist": True,
+    "restrictfilenames": False,
+    "noplaylist": False,
     "nocheckcertificate": True,
     "ignoreerrors": False,
     "logtostderr": False,
-    "quiet": True,
+    "quiet": False,
     "no_warnings": True,
     "default_search": "auto",
     "source_address": "0.0.0.0",  # bind to ipv4 since ipv6 addresses cause issues sometimes
-    "extract_flat": True,  # Add this line
+    "extract_flat": True,  
 }
 
 
