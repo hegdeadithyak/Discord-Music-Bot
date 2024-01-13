@@ -35,19 +35,25 @@ Invite the bot to your Discord server.
 <p>
 The bot has the following commands:
 
-!join <channel>: Joins a voice channel.
-!play <query>: Plays a file from the local filesystem.
-!yt <url>: Plays audio from a YouTube URL.
-!stream <url>: Streams audio from a URL without pre-downloading.
-!volume <volume>: Changes the player's volume (0-100%).
-!stop: Stops and disconnects the bot from voice.
+`!join` <channel>: Joins a voice channel.
+<br>
+`!play` <query>: Plays a file from the local filesystem.
+<br>
+`!yt` <url>: Plays audio from a YouTube URL.
+<br>
+`!stream` <url>: Streams audio from a URL without pre-downloading.
+<br>
+`!volume` <volume>: Changes the player's volume (0-100%).
+<br>
+`!stop` Stops and disconnects the bot from voice.
+<br>
 Execute commands in a text channel where you want the bot to operate.
 </p>
 <br>
 Important Note
 This example uses the message_content privileged intent. Ensure that your bot has this intent enabled in the Discord Developer Portal under the "Bot" section.
 
-
+<br>
 To-do:
 - [ ] Adding Chat GPT API for selecting songs
 - [ ] Issue to be solved in the last part
