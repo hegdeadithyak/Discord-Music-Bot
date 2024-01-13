@@ -14,7 +14,7 @@ ytdl_format_options = {
     "restrictfilenames": False,
     "noplaylist": False,
     "nocheckcertificate": True,
-    "ignoreerrors": False,
+    "ignoreerrors": True,
     "logtostderr": False,
     "quiet": False,
     "no_warnings": True,
@@ -41,25 +41,26 @@ class YTDLSource(discord.PCMVolumeTransformer):
     async def from_url(cls, url, *, loop=None, stream=False):
         loop = loop or asyncio.get_event_loop()
         video_id = None
-        if "youtube.com" in url or "youtu.be" in url:
-            query = urllib.parse.urlparse(url).query
-            video_id = urllib.parse.parse_qs(query).get("v", [None])[0]
-        elif "watch?v=" in url:
-            video_id = url.split("watch?v=")[1].split("&")[0]
-        elif "youtu.be" in url:
-            video_id = url.split("/")[-1]
-        if video_id is None:
-            raise ValueError("Invalid YouTube URL")
-        full_url = f"https://www.youtube.com/watch?v={video_id}"
-        data = await loop.run_in_executor(
+        try:
+            if "youtube.com" in url or "youtu.be" in url:
+                query = urllib.parse.urlparse(url).query
+                video_id = urllib.parse.parse_qs(query).get("v", [None])[0]
+            elif "watch?v=" in url:
+                video_id = url.split("watch?v=")[1].split("&")[0]
+            elif "youtu.be" in url:
+                video_id = url.split("/")[-1]
+            full_url = f"https://www.youtube.com/watch?v={video_id}"
+            data = await loop.run_in_executor(
         None, lambda: ytdl.extract_info(full_url, download=not stream)
     )
-        if "entries" in data:
-            data = data["entries"][0]
-            
-        filename = data["url"] if stream else ytdl.prepare_filename(data)
-        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
-
+            if "entries" in data:
+                data = data["entries"][0]
+            filename = data["url"] if stream else ytdl.prepare_filename(data)
+            print(data["url"])
+            return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+        except Exception as e:
+            print(f"Error processing {url}: {e}")
+            return None
 
 
 
