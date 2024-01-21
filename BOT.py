@@ -38,29 +38,34 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     
     @classmethod
+    @classmethod
     async def from_url(cls, url, *, loop=None, stream=False):
-        loop = loop or asyncio.get_event_loop()
-        video_id = None
-        try:
-            if "youtube.com" in url or "youtu.be" in url:
-                query = urllib.parse.urlparse(url).query
-                video_id = urllib.parse.parse_qs(query).get("v", [None])[0]
-            elif "watch?v=" in url:
-                video_id = url.split("watch?v=")[1].split("&")[0]
-            elif "youtu.be" in url:
-                video_id = url.split("/")[-1]
-            full_url = f"https://www.youtube.com/watch?v={video_id}"
-            data = await loop.run_in_executor(
-        None, lambda: ytdl.extract_info(full_url, download=not stream)
-    )
-            if "entries" in data:
-                data = data["entries"][0]
-            filename = data["url"] if stream else ytdl.prepare_filename(data)
-            print(data["url"])
-            return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
-        except Exception as e:
-            print(f"Error processing {url}: {e}")
-            return None
+      loop = loop or asyncio.get_event_loop()
+      video_id = None
+      try:
+        if "youtube.com" in url or "youtu.be" in url:
+            query = urllib.parse.urlparse(url).query
+            video_id = urllib.parse.parse_qs(query).get("v", [None])[0]
+        elif "watch?v=" in url:
+            video_id = url.split("watch?v=")[1].split("&")[0]
+        elif "youtu.be" in url:
+            video_id = url.split("/")[-1]
+
+        # Handle the case where video_id is None
+        if video_id is None:
+            raise ValueError("Unable to extract video ID from the URL.")
+
+        full_url = f"https://www.youtube.com/watch?v={video_id}"
+        data = await loop.run_in_executor(None, lambda: ytdl.extract_info(full_url, download=not stream))
+        if "entries" in data:
+            data = data["entries"][0]
+        filename = data["url"] if stream else ytdl.prepare_filename(data)
+        print(data["url"])
+        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+      except Exception as e:
+        print(f"Error processing {url}: {e}")
+        return None
+
 
 
 
@@ -90,27 +95,24 @@ class Music(commands.Cog):
 
     @commands.command()
     async def yt(self, ctx, *, url):
-        """Plays from a url (almost anything youtube_dl supports)"""
+       """Plays from a url (almost anything youtube_dl supports)"""
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop)
-            ctx.voice_client.play(
-                player, after=lambda e: print(f"Player error: {e}") if e else None
-            )
+       async with ctx.typing():
+        player = await YTDLSource.from_url(url, loop=self.bot.loop)
+        ctx.voice_client.play(player, after=lambda e: print(f"Player error: {e}") if e else None)
 
-        await ctx.send(f"Now playing: {player.title}")
+       await ctx.send(f"Now playing: {player.title}")
 
     @commands.command()
     async def stream(self, ctx, *, url):
-        """Streams from a url (same as yt, but doesn't predownload)"""
+       """Streams from a url (same as yt, but doesn't predownload)"""
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
-            ctx.voice_client.play(
-                player, after=lambda e: print(f"Player error: {e}") if e else None
-            )
+       async with ctx.typing():
+        player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
+        ctx.voice_client.play(player, after=lambda e: print(f"Player error: {e}") if e else None)
 
         await ctx.send(f"Now playing: {player.title}")
+
 
         
 
