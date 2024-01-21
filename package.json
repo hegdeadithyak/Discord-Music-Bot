@@ -1,0 +1,31 @@
+{
+  "name": "music",
+  "version": "1.0.0",
+  "description": "A Discord Music Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run "
+  },
+  "type":"module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adithya4720/Discord-Music-Bot.git"
+  },
+  "keywords": [
+    "\"Music\"",
+    "\"API\""
+  ],
+  "author": "Adithya Hegde,Bhanu Venkat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adithya4720/Discord-Music-Bot/issues"
+  },
+  "homepage": "https://github.com/Adithya4720/Discord-Music-Bot#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.9.0",
+    "discord.js": "^14.14.1",
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "ytdl-core": "^4.11.5"
+  }
+}
