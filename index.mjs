@@ -1,3 +1,5 @@
+//Documentaion https://discord.js.org/docs/packages/discord.js/14.14.1
+
 import { Client, GatewayIntentBits } from 'discord.js';
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
