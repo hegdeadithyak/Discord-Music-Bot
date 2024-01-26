@@ -55,6 +55,7 @@ This example uses the message_content privileged intent. Ensure that your bot ha
 
 <br>
 To-do:
+
 - [ ] Adding Chat GPT API for selecting songs
 - [ ] Issue to be solved in the last part
 - [ ] Deploy using Cloud Fare
