@@ -1,8 +1,6 @@
 //Documentaion https://discord.js.org/docs/packages/discord.js/14.14.1
 
-// Import required modules
 const { Client, GatewayIntentBits } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const {PREFIX,BOT_TOKEN} = require('./config.json');
 const ytdl = require('ytdl-core');
 
