@@ -1,51 +1,84 @@
 //Documentaion https://discord.js.org/docs/packages/discord.js/14.14.1
 
-const { Client, GatewayIntentBits } =require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-const axios = require('axios');
+// Import required modules
+const { Client, GatewayIntentBits } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const ytdl = require('ytdl-core');
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-  });
-  
-  client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand()) return;
-  
-    if (interaction.commandName === 'play') {
-      await interaction.reply('Under Construction!');
-    }
-  });
-  
+const TOKEN = "MTE3OTg0ODk2MDMyNDY4NTg3NA.GP89-2.qnt65yDFB3JgVn3Xuk2u7uN15kP83Jd7xiQKVY";
 
-let interval;
-client.on('message', async msg => {
-  switch (msg.content) {
-    case "ping":
-      msg.reply("Pong!");
-      break;
-    case "!meme":
-      msg.channel.send("Here's your meme!");
-      const img = await getMeme();
-      msg.channel.send(img);
-      break;
-    case "!eye":
-      msg.channel.send("You are now subscribed to eye reminders.");
-       interval = setInterval (function () {
-        msg.channel.send("Please take an eye break now!")
-        .catch(console.error); 
-      }, 3600000); 
-      break;
-    case "!stop":
-      msg.channel.send("I have stopped eye reminders.");
-      clearInterval(interval);
-      break;
-  }
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.MessageContent
+    ]
 });
 
-async function getMeme(){
-  const res = await axios.get('https://memeapi.pythonanywhere.com/');
-  console.log(res.data)
-  return res.data.memes[0].url;
-}
 
-client.login("MTE3OTg0ODk2MDMyNDY4NTg3NA.GP89-2.qnt65yDFB3JgVn3Xuk2u7uN15kP83Jd7xiQKVY");
+class Queue {
+    constructor() {
+      this.items = [];
+    }
+  
+    enqueue(item) {
+      this.items.push(item);
+    }
+  
+    dequeue() {
+      return this.items.shift();
+    }
+  
+    peek() {
+      return this.items[0];
+    }
+  
+    isEmpty() {
+      return this.items.length === 0;
+    }
+  }
+  
+  const queue = new Queue();
+
+
+client.on('ready', async () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    await client.application.commands.create(
+        new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!'),
+        new SlashCommandBuilder().setName('play').setDescription('Plays Music!'),
+        new SlashCommandBuilder().setName('skip').setDescription('skips current'))
+    });
+
+client.on("reconnecting",()=>{
+    console.log("Reconnecting");
+})
+
+
+
+
+
+
+
+
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+    const serverQueue = queue.get(interaction.guild.id);
+    if (interaction.commandName === 'ping') {
+        await interaction.reply('Pong!');
+    }
+    if (interaction.startsWith(`play`)) {
+        execute(message, serverQueue);
+        return;
+       } else if (interaction.startsWith(`skip`)) {
+        skip(message, serverQueue);
+        return;
+       } else if (interaction.startsWith(`stop`)) {
+        stop(message, serverQueue);
+        return;
+       } else {
+        message.channel.send('You need to enter a valid command!')
+       }
+});
+
+
+client.login(TOKEN)
