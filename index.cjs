@@ -18,17 +18,28 @@ const client = new Client({
 });
 
 client.emotes = emoji;
+
 const distube = new DisTube.default(client);
 
 client.commands = new Discord.Collection();
 const commandFiles = fs
   .readdirSync("./commands/")
   .filter((file) => file.endsWith(".js"));
-
+console.log(commandFiles);
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-    }
+  console.log(`Loading command file: ${file}`);
+  try {
+      const command = require(`./commands/${file}`);
+      if (!command.name) {
+          console.error(`Command file ${file} does not export a 'name' property.`);
+          continue;
+      }
+      client.commands.set(command.name, command);
+      console.log(`Command '${command.name}' loaded.`);
+  } catch (error) {
+      console.error(`Error loading command file ${file}:`, error);
+  }
+}
 
 client.once("ready", () => {
   console.log("Bot is online");
@@ -38,7 +49,7 @@ client.on("messageCreate", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().split(" ");
-  const command = args.shift().toLowerCase();
+  const command = args.shift().toLowerCase(); 
 
   switch (command) {
     case "play":
@@ -56,7 +67,6 @@ client.on("messageCreate", (message) => {
   }
 });
 
-// Queue status template
 const status = (queue) =>
   `Volume: \`${queue.volume}%\` | Filter: \`${
     queue.filters.toString() || "Off"
@@ -68,7 +78,6 @@ const status = (queue) =>
       : "Off"
   }\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
 
-// DisTube event listeners, more in the documentation page
 distube
   .on("playSong", (queue, song) =>
     queue.textChannel.send(
@@ -89,7 +98,7 @@ distube
       } songs) to queue\n${status(queue)}`,
     ),
   )
-  // DisTubeOptions.searchSongs = true
+
   .on("searchResult", (message, result) => {
     let i = 0;
     message.channel.send(
@@ -100,7 +109,7 @@ distube
         .join("\n")}\n*Enter anything else or wait 30 seconds to cancel*`,
     );
   })
-  // DisTubeOptions.searchSongs = true
+
   .on("searchCancel", (message) => message.channel.send(`Searching canceled`))
   .on("searchInvalidAnswer", (message) =>
     message.channel.send(`searchInvalidAnswer`),
