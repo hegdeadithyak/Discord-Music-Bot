@@ -32,7 +32,7 @@ This repository contains the code for a Discord music bot that allows users to p
    npm install
    ```
 
-Note: Ensure you have npm or yarn installed on your system before running this command.
+### Note: Ensure you have npm or yarn installed on your system before running this command.
 
 Usage <a name="usage"></a>
 Run the bot using:
