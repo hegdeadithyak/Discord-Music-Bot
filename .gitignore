@@ -1,8 +1,7 @@
 # Ignore environment variables
 .env
 Keys.txt
-# Ignore node_modules folder
-node_modules/
+
 
 # Ignore build artifacts
 dist/
