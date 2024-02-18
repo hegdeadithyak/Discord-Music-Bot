@@ -50,7 +50,9 @@ Use the !play <url> command to play a song from YouTube.
 
 Example:
 
+```
 !play [https://www.youtube.com/watch?v=dQw4w9WgXcQ](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+```
 
 # Future Works <a name="FutureWorks"></a>
 
