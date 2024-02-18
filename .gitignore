@@ -1,0 +1,26 @@
+# Ignore environment variables
+.env
+
+# Ignore node_modules folder
+node_modules/
+
+# Ignore build artifacts
+dist/
+build/
+
+# Ignore test coverage reports
+coverage/
+
+# Ignore temporary files
+.DS_Store
+*.tmp
+*.log
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore any personal configuration files
+*.config
+
+# Ignore secrets management files
+.secrets.env
