@@ -1,7 +1,8 @@
+require("dotenv").config();
+
 const ytdl = require("discord-ytdl-core");
 const { Client, GatewayIntentBits  } = require("discord.js");
 const { joinVoiceChannel,createAudioPlayer ,createAudioResource} = require('@discordjs/voice');
-const { SlashCommandBuilder } = require("@discordjs/builders");
 
 const client = new Client({
     intents :[GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessages],
@@ -80,4 +81,4 @@ client.on("interactionCreate", async interaction => {
     }
 });
 
-client.login("");
+client.login(process.env.BOT_TOKEN);

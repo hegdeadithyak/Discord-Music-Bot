@@ -31,6 +31,7 @@
     "discord-ytdl-core": "^5.0.4",
     "discord.js": "^14.12.1",
     "distube": "^4.0.6",
+    "dotenv": "^16.4.4",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
