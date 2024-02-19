@@ -2,7 +2,7 @@
 
 This repository contains the code for a Discord music bot that allows users to play songs from YouTube in voice channels.
 
-<img src="PlayMusic.png" alt="Discord Music Bot" width="350"/>
+<img src="icon/PlayMusic.png" alt="Discord Music Bot" width="350"/>
 
 ## Table of Contents
 
