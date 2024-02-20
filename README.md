@@ -60,10 +60,10 @@ Example:
 
 ### Inputs
 
-   <img src="icon/Working.jpeg" alt="Input" width="350"/>
+   <img src="icon/Working.jpeg" alt="Input" width="600"/>
   
 ### Result
-   <img src="icon/output.jpeg" alt="Output" width="350"/>
+   <img src="icon/output.jpeg" alt="Output" width="600"/>
 
 # Future Works <a name="FutureWorks"></a>
 
