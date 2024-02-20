@@ -56,9 +56,18 @@ Example:
 !play https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
+# Working
+
+### Inputs
+
+   <img src="icon/Working.jpeg" alt="Input" width="350"/>
+  
+### Result
+   <img src="icon/output.jpeg" alt="Output" width="350"/>
+
 # Future Works <a name="FutureWorks"></a>
 
-- [ ] Play Songs Based on user input
+- [x] Play Songs Based on user input
 - [ ] Play Songs according to user's Mood
 - [ ] Deploy using Walfiy
 - [ ] Functionality for Queue of Songs,Skip,Pause
