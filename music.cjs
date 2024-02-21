@@ -11,7 +11,7 @@ const client = new Client({
     intents :[GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessages],
 });
 
-const prefix = "!";
+// const prefix = "!";
 
 client.on("ready", () => {
     console.log("Logged in as " + client.user.tag);
@@ -50,9 +50,6 @@ client.on("ready", () => {
 
 client.on("interactionCreate", async interaction => { 
     
-    
-
-
     if (!interaction.isCommand()) return; 
     
     const commandName =interaction.commandName;
