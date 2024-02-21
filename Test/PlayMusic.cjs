@@ -11,7 +11,7 @@ const client = new Client({
     intents :[GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessages],
 });
 
-const prefix = "!";
+// const prefix = "!";
 
 client.on("ready", () => {
     console.log("Logged in as " + client.user.tag);
@@ -50,9 +50,6 @@ client.on("ready", () => {
 
 client.on("interactionCreate", async interaction => { 
     
-    
-
-
     if (!interaction.isCommand()) return; 
     
     const commandName =interaction.commandName;
@@ -88,8 +85,8 @@ client.on("interactionCreate", async interaction => {
                 adapterCreator: interaction.guild.voiceAdapterCreator,
             });
             
-            const url = input.trim; 
-
+            const url = input.trim(); 
+            console.log(url);
             const stream = ytdl(url, {
                 filter: "audioonly",
                 opusEncoded: true,
@@ -101,7 +98,7 @@ client.on("interactionCreate", async interaction => {
             player.play(resource);
             connection.subscribe(player);
 
-            await interaction.reply({ content: "Playing the song!" }); 
+            await interaction.reply({ content: `Playing the song!${url}` }); 
         } catch (error) {
             console.error(error);
             await interaction.reply({ content: "Error playing the song!" });
