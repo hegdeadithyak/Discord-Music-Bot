@@ -4,6 +4,10 @@ This repository contains the code for a Discord music bot that allows users to p
 
 <img src="icon/PlayMusic.png" alt="Discord Music Bot" width="350"/>
 
+### Currently Working on
+- [ ] Playing song by using the Song name. 
+- [ ] Playing using Users Moods ranging from good_vibes to sad_songs 
+
 ## Table of Contents
 
 - [Features](#features)
@@ -56,10 +60,7 @@ Example:
 !play https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
-# Working
-
-### Inputs
-
+### Command
    <img src="icon/Working.jpeg" alt="Input" width="600"/>
   
 ### Result
