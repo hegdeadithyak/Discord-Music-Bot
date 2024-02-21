@@ -98,7 +98,7 @@ client.on("interactionCreate", async interaction => {
             player.play(resource);
             connection.subscribe(player);
 
-            await interaction.reply({ content: `Playing the song!${url}` }); 
+            await interaction.reply({ content: `Playing the song: ${url}` }); 
         } catch (error) {
             console.error(error);
             await interaction.reply({ content: "Error playing the song!" });
