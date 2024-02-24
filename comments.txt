@@ -1,0 +1,10 @@
+    // const stream = ytdl(
+        //     "https://www.youtube.com/watch?v=QnL5P0tFkwM",
+        //     {
+        //         filter: "audioonly",
+        //         opusEncoded: true,
+        //         encoderArgs: ["-af", "bass=g=10,dynaudnorm=f=200"],
+        //     }
+        // );  
+        // 
+        //This is a older version which we used, might be used later so commented out.
