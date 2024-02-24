@@ -1,41 +1,85 @@
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
+require("dotenv").config();
+
+const ytdl = require("discord-ytdl-core");
+const { Client, GatewayIntentBits  } = require("discord.js");
+const { joinVoiceChannel,createAudioPlayer ,createAudioResource} = require('@discordjs/voice');
+const { SlashCommandBuilder } = require('discord.js');
+const yts = require('yt-search');
+const ytpl = require('ytpl');
 
 
-const bot = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
+const client = new Client({
+    intents :[GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessages],
 });
 
+// const prefix = "!";
 
 
-const { useMainPlayer } = require('discord-player');
 
-async function execute(interaction) {
-    const player = useMainPlayer();
-    const channel = interaction.member.voice.channel;
-    if (!channel) return interaction.reply('You are not connected to a voice channel!'); 
-    const query = interaction.options.getString('query', true); 
-   
-    await interaction.deferReply();
+client.on("ready", () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    
+    const data = new SlashCommandBuilder()
+    .setName('sing')
+    .setDescription('Sings your song')
+    .addStringOption(option =>
+        option.setName('song_name')
+            .setDescription('The song name to sing')
+            .setRequired(true))
+    client.application.commands.create(data);
 
-    try {
-        const { track } = await player.play(channel, query, {
-            nodeOptions: {
-                metadata: interaction
-            }
-        });
+});
 
-        return interaction.followUp(`**${track.title}** enqueued!`);
-    } catch (e) {
-        return interaction.followUp(`Something went wrong: ${e}`);
+client.on("interactionCreate", async interaction => { 
+    
+    
+    if (!interaction.isCommand()) return; 
+    
+    const commandName =interaction.commandName;
+
+    if (interaction.commandName === "ping") {
+        await interaction.reply("Pong! <:Pingsock:433019097005948938>"); 
     }
-}
+    else if (interaction.commandName === "avatar") {
+        await interaction.reply({ content: interaction.user.avatarURL() }); 
+    } else if (interaction.commandName === "echo") {
+        const input = interaction.options.getString('song_name');
+        
+        if (!interaction.member.voice.channel) {
+            return await interaction.reply("You're not in a voice channel?"); 
+        }
+        try {
+            const connection = await joinVoiceChannel({
+                channelId: interaction.member.voice.channel.id,
+                guildId: interaction.guild.id,
+                adapterCreator: interaction.guild.voiceAdapterCreator,
+            });
+             
+            const {videos} = await yts(input);
+            if (!videos.length) return message.channel.send("No songs were found!");
+            const song = {
+                title: videos[0].title,
+                url: videos[0].url
+            };
+            
+            // console.log(song);
+            const stream = ytdl(song.url, {
+                filter: "audioonly",
+                opusEncoded: true,
+                encoderArgs: ["-af", "bass=g=10,dynaudnorm=f=200"],
+            });
 
-bot.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
+            const player = createAudioPlayer();
+            const resource = createAudioResource(stream);
+            player.play(resource);
+            connection.subscribe(player);
 
-    if (interaction.commandName === '!play') {
-        await execute(interaction);
+            await interaction.reply({ content: `Playing the song: ${song.url}` }); 
+        } catch (error) {
+            console.error(error);
+            await interaction.reply({ content: "Error playing the song!" });
+        }
     }
 });
 
-bot.login("");
+client.login(process.env.BOT_TOKEN);
