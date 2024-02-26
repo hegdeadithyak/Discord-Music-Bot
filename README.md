@@ -72,7 +72,7 @@ Example:
 
 - [x] Play Songs Based on user input
 - [ ] Play Songs according to user's Mood
-- [ ] Deploy using Walfiy
+- [ ] Deploy using Bot-Hosting
 - [ ] Functionality for Queue of Songs,Skip,Pause
 
 # Contributing <a name="contributing"></a>
