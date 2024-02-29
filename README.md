@@ -8,7 +8,7 @@ This repository contains the code for a Discord music bot that allows users to p
 
 - [x] Playing song by using the Song name.
 - [x] Deploy using Bot-Hosting
-- [ ] Playing using Users Moods ranging from good_vibes to sad_songs
+- [x] Playing using Users Moods ranging from good_vibes to sad_songs
 
 ## Table of Contents
 
