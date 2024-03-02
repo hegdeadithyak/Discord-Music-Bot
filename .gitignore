@@ -1,7 +1,8 @@
 # Ignore environment variables
 .env
 Keys.txt
-
+.vscode
+.idea
 
 # Ignore build artifacts
 dist/

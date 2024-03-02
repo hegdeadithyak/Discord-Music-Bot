@@ -14,10 +14,8 @@ const client = new Client({
 // const prefix = "!";
 
 
-
 client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-    
+    console.log(`Logged in as ${client.user.tag}!`);    
     const data = new SlashCommandBuilder()
     .setName('sing')
     .setDescription('Sings your song')
@@ -30,12 +28,8 @@ client.on("ready", () => {
 });
 
 client.on("interactionCreate", async interaction => { 
-    
-    
     if (!interaction.isCommand()) return; 
-    
     const commandName =interaction.commandName;
-
     if (interaction.commandName === "ping") {
         await interaction.reply("Pong! <:Pingsock:433019097005948938>"); 
     }
