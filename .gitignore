@@ -4,6 +4,7 @@ Keys.txt
 .vscode
 .idea
 node_modules
+.prettierrc
 
 # Ignore build artifacts
 dist/
