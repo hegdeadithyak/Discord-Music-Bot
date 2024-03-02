@@ -6,9 +6,8 @@ This repository contains the code for a Discord music bot that allows users to p
 
 ### Currently Working on
 
-- [x] Playing song by using the Song name.
-- [x] Deploy using Bot-Hosting
-- [x] Playing using Users Moods ranging from good_vibes to sad_songs
+- [ ] Functionality of Queue,edit,skip
+- [ ] Play songs using playlists 
 
 ## Table of Contents
 
