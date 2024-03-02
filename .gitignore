@@ -3,6 +3,7 @@
 Keys.txt
 .vscode
 .idea
+node_modules
 
 # Ignore build artifacts
 dist/
