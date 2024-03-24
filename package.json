@@ -1,9 +1,46 @@
 {
+  "name": "music",
+  "version": "1.0.0",
+  "description": "A Discord Music Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run "
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adithya4720/Discord-Music-Bot.git"
+  },
+  "keywords": [
+    "\"Music\"",
+    "\"API\""
+  ],
+  "author": "Adithya Hegde,Bhanu Venkat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adithya4720/Discord-Music-Bot/issues"
+  },
+  "homepage": "https://github.com/Adithya4720/Discord-Music-Bot#readme",
   "dependencies": {
+    "@discordjs/builders": "github:discordjs/builders",
+    "@discordjs/opus": "^0.9.0",
     "@discordjs/voice": "^0.16.1",
+    "@distube/yt-dlp": "^1.1.3",
+    "@distube/ytdl-core": "^4.13.3",
+    "discord-player": "^6.6.2",
     "discord-ytdl-core": "^5.0.4",
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.4.5",
+    "discord.js": "^14.12.1",
+    "distube": "^4.0.6",
+    "dotenv": "^16.4.4",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^5.2.0",
+    "node-opus": "^0.3.3",
+    "prettier": "^3.0.1",
+    "sodium": "^3.0.2",
+    "yarn-upgrade-all": "^0.7.2",
     "yt-search": "^2.10.4",
     "ytdl-core": "^4.11.5"
   }
