@@ -61,12 +61,8 @@ Example:
 !play https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
-### Command
-
-   <img src="icon/Working.jpeg" alt="Input" width="600"/>
-  
-### Result
-   <img src="icon/output.jpeg" alt="Output" width="600"/>
+### Output
+[output](./2024-03-24%2023-20-33.mkv)
 
 # Future Works <a name="FutureWorks"></a>
 
