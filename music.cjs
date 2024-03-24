@@ -1,9 +1,8 @@
 require("dotenv").config();
 
 const ytdl = require("discord-ytdl-core");
-const { Client, GatewayIntentBits  } = require("discord.js");
+const { Client, GatewayIntentBits ,SlashCommandBuilder } = require("discord.js");
 const { joinVoiceChannel,createAudioPlayer ,createAudioResource} = require('@discordjs/voice');
-const { SlashCommandBuilder } = require('discord.js');
 const yts = require('yt-search');
 
 
