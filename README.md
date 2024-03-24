@@ -62,7 +62,6 @@ Example:
 ```
 
 ### Output
-[output](./2024-03-24%2023-20-33.mkv)
 
 # Future Works <a name="FutureWorks"></a>
 
@@ -73,6 +72,10 @@ Example:
 # Contributing <a name="contributing"></a>
 
 Feel free to fork this repository and contribute your improvements!
+
+## Output 
+https://github.com/hegdeadithyak/Discord-Music-Bot/assets/116452077/2cd0a8b1-41b5-4259-a21c-79c44e5b2bb6
+
 
 # License <a name="license"></a>
 
